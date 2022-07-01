@@ -1,0 +1,41 @@
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+//Insertionsort
+
+void insertionSort(int array[100], int n)
+{
+	int i, chave, j;
+	for (i = 1; i < n; i++) {
+		chave = array[i];
+		j = i - 1;
+		
+		while (j >= 0 && array[j] > chave) {
+			array[j+1] = array[j];
+			j = j - 1;
+		}
+		array[j+1] = chave;
+	}
+}
+
+
+int main()
+{
+    
+    srand(time(NULL));
+	int array[100],i;
+	
+	for(i = 0; i < 100; i++){
+     
+     array[i] = (rand()%1000);
+ }
+	int n = ((int)sizeof(array) / sizeof(array[0]));
+
+	insertionSort(array, n);
+	
+        for (i = 0; i < n; i++)
+		printf("i = %d array = %d \n", i, array[i]);
+		
+	system("pause");
+}
