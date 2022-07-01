@@ -1,0 +1,86 @@
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void merge(int array[100], int l,
+		int m, int r)
+{
+	int i, j, k;
+	int n1 = m - l + 1;
+	int n2 = r - m;
+
+	int e[n1], d[n2];
+
+
+	for (i = 0; i < n1; i++)
+		e[i] = array[l + i];
+	for (j = 0; j < n2; j++)
+		d[j] = array[m + 1 + j];
+
+	i = 0;
+	j = 0;
+	k = l;
+	
+	while (i < n1 && j < n2)
+	{
+		if (e[i] <= d[j])
+		{
+			array[k] = e[i];
+			i++;
+		}
+		else
+		{
+			array[k] = d[j];
+			j++;
+		}
+		k++;
+	}
+
+	while (i < n1) {
+		array[k] = e[i];
+		i++;
+		k++;
+	}
+
+	while (j < n2)
+	{
+		array[k] = d[j];
+		j++;
+		k++;
+	}
+}
+
+void mergeSort(int array[],
+			int l, int r)
+{
+	if (l < r)
+	{
+	
+		int m = l + (r - l) / 2;
+
+		mergeSort(array, l, m);
+		mergeSort(array, m + 1, r);
+
+		merge(array, l, m, r);
+	}
+}
+
+int main()
+{
+    srand(time(NULL));
+	int array[100], i;
+	
+	for(i = 0; i < 100; i++){
+     
+     array[i] = (rand()%1000);
+ }
+ 
+	int tam = sizeof(array) / sizeof(array[0]);
+	
+	mergeSort(array, 0, tam - 1);
+
+	for (i = 0; i < tam; i++){
+		printf("i = %d array = %d \n", i, array[i]);
+	}
+	system("pause");
+}
