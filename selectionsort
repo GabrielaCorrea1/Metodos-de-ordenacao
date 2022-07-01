@@ -1,0 +1,45 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
+//Selectionsort
+
+void troca(int *a, int *b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+void selectionSort(int array[100], int tam) {
+  for (int p = 0; p < tam - 1; p++) {
+    int min = p;
+    for (int i = p + 1; i < tam; i++) {
+
+      if (array[i] < array[min])
+        min = i;
+    }
+
+    
+    troca(&array[min], &array[p]);
+  }
+}
+
+
+int main() {
+    int array[100], i;
+    srand(time(NULL));
+  
+  for(i = 0; i < 100; i++){
+     
+    array[i] = (rand()%1000);
+ }
+  int tam = ((int)sizeof(array) / sizeof(array[0]));
+  
+  selectionSort(array, tam);
+  
+  for (int i = 0; i < tam; ++i) {
+    printf("i = %d array = %d \n  ", i, array[i]);
+  }
+  
+  system("pause");
+}
