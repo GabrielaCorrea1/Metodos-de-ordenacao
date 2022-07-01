@@ -1,0 +1,36 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
+//Bubblesort
+
+int main()
+{
+  int array[100], n, c, d, temp, i;
+
+ n = ((int)sizeof(array)/sizeof(array[0]));
+ srand(time(NULL));
+ 
+ for(i = 0; i < 100; i++){
+     
+     array[i] = (rand()%100);
+ }
+
+  for (c = 0 ; c < n - 1; c++)
+  {
+    for (d = 0 ; d < n - c - 1; d++)
+    {
+      if (array[d] > array[d+1]) 
+      {
+        temp       = array[d];
+        array[d]   = array[d+1];
+        array[d+1] = temp;
+      }
+    }
+  }
+
+  for (c = 0; c < n; c++)
+     printf("i = %d array = %d \n ",c, array[c]);
+
+  system("pause");
+}
