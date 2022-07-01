@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+//Quicksort
+
+void quicksort(int array[10],int primeiro ,int ultimo){
+
+    int i, j, pivot, temp;
+
+    if(primeiro<ultimo){
+
+        pivot=primeiro;
+
+        i=primeiro;
+
+        j=ultimo;
+
+        while(i<j){
+
+            while(array[i]<=array[pivot]&&i<ultimo)
+
+            i=i+1;
+
+            while(array[j]>array[pivot])
+
+                j=j-1;
+
+                if(i<j){
+
+                    temp=array[i];
+
+                    array[i]=array[j];
+
+                    array[j]=temp;
+
+                }
+
+            }
+
+            temp=array[pivot];
+
+            array[pivot]=array[j];
+
+            array[j]=temp;
+
+            quicksort(array,primeiro,j-1);
+
+            quicksort(array,j+1,ultimo);
+
+        }
+
+    }
+
+    int main(){
+
+        int i, tam, array[100];
+        
+         for(i = 0; i < 100; i++){
+     
+            array[i] = (rand()%100);
+        }
+        tam = ((int)sizeof(array)/sizeof(array[0]));
+
+        for(i=0;i<tam;i++)
+
+            quicksort(array,0,tam-1);
+
+            for(i=0;i<tam;i++)
+
+                printf(" i = %d array = %d \n",i, array[i]);
+
+system("pause");
+
+}
